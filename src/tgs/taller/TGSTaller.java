@@ -27,7 +27,7 @@ public class TGSTaller {
         do {
 
             op = GeneralES.leaEntero("Menu principal\n"
-                    + "1. Inscriirse a un deporte\n"
+                    + "1. Inscribirse a un deporte\n"
                     + "2. Mostrar Lista de Estudiantes\n"
                     + "0. Salir\n");
             switch (op) {
