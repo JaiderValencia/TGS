@@ -35,7 +35,7 @@ public class TGSTaller {
                     String genero;
                     boolean mfr = false;
                     int opt = 0,
-                     matriculaIngresada;
+                            matriculaIngresada;
                     matriculaIngresada = GeneralES.leaEntero("Ingrese su numero de Identificacion");
 
                     Matricula matriculaEncontrada = null;
@@ -49,7 +49,8 @@ public class TGSTaller {
                     // 3. Bloque de LÓGICA (FUERA DEL BUCLE FOR)
                     if (matriculaEncontrada != null) {
                         // A. La matrícula FUE encontrada
-                        GeneralES.imp("Matrícula encontrada: " + matriculaEncontrada.getNombre() + " con Documento No. " + matriculaEncontrada.getId());
+                        GeneralES.imp("Matrícula encontrada: " + matriculaEncontrada.getNombre() + " con Documento No. "
+                                + matriculaEncontrada.getId());
 
                         // B. Evaluar el estado de la matrícula encontrada
                         if (matriculaEncontrada.isEstado()) {
@@ -94,7 +95,7 @@ public class TGSTaller {
                             matriculaEncontrada.setDeporte("Ninguno");
                             break;
                         }
-                        
+
                     } else if (matriculaEncontrada.getGenero() == "Femenino") {
                         opt = GeneralES.leaEntero("Deportes disponibles:\n"
                                 + "Escoja el deporte al que quiere unirse\n"
@@ -103,7 +104,7 @@ public class TGSTaller {
                                 + "3.Voleibol\n"
                                 + "4.Atletismo\n"
                                 + "0.Ninguno\n");
-                        
+
                         GeneralES.imp("Inscripcion completada\n"
                                 + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
                                 + "Genero: " + matriculaEncontrada.getGenero() + "\n"
@@ -175,12 +176,14 @@ public class TGSTaller {
 
                     GeneralES.imp("----------------------------------------");
                     GeneralES.imp("Total de elementos: " + listaMatriculas.size());
-            
-        }
-        
-    }
-    while (op 
-!= 0);
+                    break;
+
+                default:
+                    GeneralES.imp("Opcion no valida");
+                    break;
+            }
+
+        } while (op != 0);
 
     }
 
