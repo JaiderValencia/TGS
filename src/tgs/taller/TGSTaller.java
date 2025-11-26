@@ -5,6 +5,7 @@ Jaider Andres Valencia Mena
 Jhon Fredy Gomez Cuartas
  */
 package tgs.taller;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +19,25 @@ public class TGSTaller {
         listaUsuarios.add(new Usuario("admin", "admin123", "Administrador"));
         boolean usuarioValido;
         String usernameIngresado, passwordIngresado;
+        int intentos = 0;
+        final int MAX_INTENTOS = 3;
 
         do {
+            intentos++;
+
             usernameIngresado = GeneralES.lea("\nIngrese su nombre de usuario:");
             passwordIngresado = GeneralES.lea("Ingrese su contraseña:");
 
             usuarioValido = validarUsuario(usernameIngresado, passwordIngresado, listaUsuarios);
 
             if (!usuarioValido) {
-                GeneralES.imp("Nombre de usuario o contraseña incorrectos. Por favor, intente de nuevo.\n");
+                GeneralES.imp("Nombre de usuario o contraseña incorrectos. Por favor, intente de nuevo. Tiene "
+                        + (MAX_INTENTOS - intentos) + " intentos restantes.\n");
+            }
+
+            if (intentos >= MAX_INTENTOS && !usuarioValido) {
+                GeneralES.imp("Ha excedido el número máximo de intentos. Saliendo del programa.\n");
+                System.exit(0);
             }
         } while (usuarioValido == false);
 
@@ -68,8 +79,9 @@ public class TGSTaller {
                     // 3. Bloque de LÓGICA (FUERA DEL BUCLE FOR)
                     if (matriculaEncontrada != null) {
                         // A. La matrícula FUE encontrada
-                        GeneralES.imp("\nMatrícula encontrada: " + matriculaEncontrada.getNombre() + " con Documento No. "
-                                + matriculaEncontrada.getId() + "\n");
+                        GeneralES.imp(
+                                "\nMatrícula encontrada: " + matriculaEncontrada.getNombre() + " con Documento No. "
+                                        + matriculaEncontrada.getId() + "\n");
 
                         // B. Evaluar el estado de la matrícula encontrada
                         if (matriculaEncontrada.isEstado()) {
