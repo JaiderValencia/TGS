@@ -5,7 +5,7 @@ Jaider Andres Valencia Mena
 Jhon Fredy Gomez Cuartas
  */
 package tgs.taller;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -167,7 +167,8 @@ public class TGSTaller {
                                     + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
                                     + "Genero: " + matriculaEncontrada.getGenero() + "\n"
                                     + "Discapacidad: " + matriculaEncontrada.isMfr() + "\n"
-                                    + "Deporte: " + matriculaEncontrada.getDeporte());
+                                    + "Deporte: " + matriculaEncontrada.getDeporte()+"\n"
+                                    +"Fecha: "+LocalDateTime.now());
                         }
                     } else {
                         do {
