@@ -20,7 +20,7 @@ public class TGSTaller {
         String usernameIngresado, passwordIngresado;
 
         do {
-            usernameIngresado = GeneralES.lea("Ingrese su nombre de usuario:");
+            usernameIngresado = GeneralES.lea("\nIngrese su nombre de usuario:");
             passwordIngresado = GeneralES.lea("Ingrese su contraseña:");
 
             usuarioValido = validarUsuario(usernameIngresado, passwordIngresado, listaUsuarios);
@@ -40,7 +40,7 @@ public class TGSTaller {
         listaMatriculas.add(new Matricula("Pedro Ríos", "Masculino", 1021554466, false));
         listaMatriculas.add(new Matricula("Andrea Vega", "Femenino", 1024003789, false));
 
-        GeneralES.imp("Programa Incripcion Deportes");
+        GeneralES.imp("\n=== Programa Inscripcion Deportes ===\n");
         int op = 0;
         int cuposBaloncesto = 8, cuposNatacion = 10, cuposVoleibol = 12, cuposAtletismo = 15, cuposAjedrez = 6;
 
@@ -55,7 +55,7 @@ public class TGSTaller {
                     boolean mfr = false;
                     int opt = 0,
                             matriculaIngresada;
-                    matriculaIngresada = GeneralES.leaEntero("Ingrese su numero de Identificacion");
+                    matriculaIngresada = GeneralES.leaEntero("\nIngrese su numero de Identificacion:");
 
                     Matricula matriculaEncontrada = null;
                     for (Matricula m : listaMatriculas) {
@@ -68,7 +68,7 @@ public class TGSTaller {
                     // 3. Bloque de LÓGICA (FUERA DEL BUCLE FOR)
                     if (matriculaEncontrada != null) {
                         // A. La matrícula FUE encontrada
-                        GeneralES.imp("Matrícula encontrada: " + matriculaEncontrada.getNombre() + " con Documento No. "
+                        GeneralES.imp("\nMatrícula encontrada: " + matriculaEncontrada.getNombre() + " con Documento No. "
                                 + matriculaEncontrada.getId() + "\n");
 
                         // B. Evaluar el estado de la matrícula encontrada
@@ -120,12 +120,12 @@ public class TGSTaller {
 
                         if (cuposAjedrez >= 0 && opt == 1) {
                             matriculaEncontrada.setFechaInscripcion(java.time.LocalDate.now().toString());
-                            GeneralES.imp("Inscripcion completada\n"
+                            GeneralES.imp("\n=== Inscripcion completada ===\n"
                                     + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
                                     + "Genero: " + matriculaEncontrada.getGenero() + "\n"
                                     + "Discapacidad: " + matriculaEncontrada.isMfr() + "\n"
                                     + "Deporte: " + matriculaEncontrada.getDeporte() + "\n"
-                                    + "Fecha de Inscripcion: " + matriculaEncontrada.getFechaInscripcion());
+                                    + "Fecha de Inscripcion: " + matriculaEncontrada.getFechaInscripcion() + "\n");
                         }
                         break;
                     } else if (matriculaEncontrada.getGenero() == "Femenino") {
@@ -184,16 +184,16 @@ public class TGSTaller {
 
                         if (inscripcionExitosa) {
                             matriculaEncontrada.setFechaInscripcion(java.time.LocalDate.now().toString());
-                            GeneralES.imp("Inscripcion completada\n"
+                            GeneralES.imp("\n=== Inscripcion completada ===\n"
                                     + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
                                     + "Genero: " + matriculaEncontrada.getGenero() + "\n"
                                     + "Discapacidad: " + matriculaEncontrada.isMfr() + "\n"
                                     + "Deporte: " + matriculaEncontrada.getDeporte() + "\n"
-                                    + "Fecha de Inscripcion: " + matriculaEncontrada.getFechaInscripcion());
+                                    + "Fecha de Inscripcion: " + matriculaEncontrada.getFechaInscripcion() + "\n");
                         }
                     } else {
                         do {
-                            opt = GeneralES.leaEntero("Deportes disponibles:\n"
+                            opt = GeneralES.leaEntero("\nDeportes disponibles:\n"
                                     + "Escoja el deporte al que quiere unirse\n"
                                     + "1.Natacion (Cupos disponibles: " + cuposNatacion + ")\n"
                                     + "2.Voleibol (Cupos disponibles: " + cuposVoleibol + ")\n"
@@ -237,33 +237,34 @@ public class TGSTaller {
 
                         if (inscripcionExitosa) {
                             matriculaEncontrada.setFechaInscripcion(java.time.LocalDate.now().toString());
-                            GeneralES.imp("Inscripcion completada\n"
+                            GeneralES.imp("\n=== Inscripcion completada ===\n"
                                     + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
                                     + "Genero: " + matriculaEncontrada.getGenero() + "\n"
                                     + "Discapacidad: " + matriculaEncontrada.isMfr() + "\n"
                                     + "Deporte: " + matriculaEncontrada.getDeporte() + "\n"
-                                    + "Fecha de Inscripcion: " + matriculaEncontrada.getFechaInscripcion());
+                                    + "Fecha de Inscripcion: " + matriculaEncontrada.getFechaInscripcion() + "\n");
                         }
                     }
 
                     break;
                 case 2:
+                    GeneralES.imp("\n=== Lista de Estudiantes ===\n");
                     for (Matricula matricula : listaMatriculas) {
                         // Cuando imprimes el objeto, Java llama automáticamente al método toString()
                         System.out.println(matricula);
                     }
 
-                    GeneralES.imp("----------------------------------------");
+                    GeneralES.imp("\n----------------------------------------");
                     GeneralES.imp("Total de elementos: " + listaMatriculas.size());
                     GeneralES.imp("\n");
                     break;
 
                 case 0:
-                    GeneralES.imp("Saliendo del programa...");
+                    GeneralES.imp("\nSaliendo del programa...\n");
                     break;
 
                 default:
-                    GeneralES.imp("Opcion no valida");
+                    GeneralES.imp("\nOpcion no valida\n");
                     break;
             }
 
