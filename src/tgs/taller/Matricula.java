@@ -12,7 +12,7 @@ package tgs.taller;
 public class Matricula {
 
     // Campos (atributos) de la clase
-    private String nombre, genero, deporte;  // Nombre del estudiante
+    private String nombre, genero, deporte, fechaInscripcion;  // Nombre del estudiante
 
     private int id;         // Identificación o número de matrícula (Entero)
     private boolean estado, mfr; // Estado de la matrícula (true = Activa, false = Inactiva)
@@ -40,6 +40,14 @@ public class Matricula {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    public String getFechaInscripcion() {
+        return fechaInscripcion;
+    }
+
+    public void setFechaInscripcion(String fechaInscripcion) {
+        this.fechaInscripcion = fechaInscripcion;
     }
 
     public boolean isMfr() {
@@ -73,6 +81,8 @@ public class Matricula {
                 + " | Género: " + this.genero
                 + " | Deporte: " + this.deporte
                 + " | Estado: " + estadoTexto
-                + " | MFR: " + mfrTexto; // Incluimos todos los nuevos campos
+                + " | MFR: " + mfrTexto
+                + " | Fecha de Inscripción: " + this.fechaInscripcion; // Incluimos todos los nuevos campos
+                
     }
 }

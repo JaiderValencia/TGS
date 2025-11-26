@@ -13,6 +13,24 @@ public class TGSTaller {
 
     public static void main(String[] args) {
         List<Matricula> listaMatriculas = new ArrayList<>();
+        List<Usuario> listaUsuarios = new ArrayList<>();
+
+        listaUsuarios.add(new Usuario("admin", "admin123", "Administrador"));
+        boolean usuarioValido;
+        String usernameIngresado, passwordIngresado;
+
+        do {
+            usernameIngresado = GeneralES.lea("Ingrese su nombre de usuario:");
+            passwordIngresado = GeneralES.lea("Ingrese su contraseña:");
+
+            usuarioValido = validarUsuario(usernameIngresado, passwordIngresado, listaUsuarios);
+
+            if (!usuarioValido) {
+                GeneralES.imp("Nombre de usuario o contraseña incorrectos. Por favor, intente de nuevo.\n");
+            }
+        } while (usuarioValido == false);
+
+        GeneralES.imp("\nInicio de sesión exitoso. ¡Bienvenido, " + usernameIngresado + "!\n");
 
         listaMatriculas.add(new Matricula("Juan Torres", "Masculino", 1024001123, true));
         listaMatriculas.add(new Matricula("María Solís", "Femenino", 1024002456, true));
@@ -33,7 +51,7 @@ public class TGSTaller {
                     + "2. Mostrar Lista de Estudiantes\n"
                     + "0. Salir\n");
             switch (op) {
-                case 1:                    
+                case 1:
                     boolean mfr = false;
                     int opt = 0,
                             matriculaIngresada;
@@ -101,11 +119,13 @@ public class TGSTaller {
                         } while (opt != 1);
 
                         if (cuposAjedrez >= 0 && opt == 1) {
+                            matriculaEncontrada.setFechaInscripcion(java.time.LocalDate.now().toString());
                             GeneralES.imp("Inscripcion completada\n"
                                     + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
                                     + "Genero: " + matriculaEncontrada.getGenero() + "\n"
                                     + "Discapacidad: " + matriculaEncontrada.isMfr() + "\n"
-                                    + "Deporte: " + matriculaEncontrada.getDeporte());
+                                    + "Deporte: " + matriculaEncontrada.getDeporte() + "\n"
+                                    + "Fecha de Inscripcion: " + matriculaEncontrada.getFechaInscripcion());
                         }
                         break;
                     } else if (matriculaEncontrada.getGenero() == "Femenino") {
@@ -163,12 +183,13 @@ public class TGSTaller {
                         }
 
                         if (inscripcionExitosa) {
+                            matriculaEncontrada.setFechaInscripcion(java.time.LocalDate.now().toString());
                             GeneralES.imp("Inscripcion completada\n"
                                     + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
                                     + "Genero: " + matriculaEncontrada.getGenero() + "\n"
                                     + "Discapacidad: " + matriculaEncontrada.isMfr() + "\n"
-                                    + "Deporte: " + matriculaEncontrada.getDeporte()+"\n"
-                                    +"Fecha: "+LocalDateTime.now());
+                                    + "Deporte: " + matriculaEncontrada.getDeporte() + "\n"
+                                    + "Fecha de Inscripcion: " + matriculaEncontrada.getFechaInscripcion());
                         }
                     } else {
                         do {
@@ -211,15 +232,17 @@ public class TGSTaller {
                                 } else {
                                     GeneralES.imp("Lo sentimos, no hay cupos disponibles para Atletismo\n");
                                 }
-                                break;                            
+                                break;
                         }
 
                         if (inscripcionExitosa) {
+                            matriculaEncontrada.setFechaInscripcion(java.time.LocalDate.now().toString());
                             GeneralES.imp("Inscripcion completada\n"
                                     + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
                                     + "Genero: " + matriculaEncontrada.getGenero() + "\n"
                                     + "Discapacidad: " + matriculaEncontrada.isMfr() + "\n"
-                                    + "Deporte: " + matriculaEncontrada.getDeporte());
+                                    + "Deporte: " + matriculaEncontrada.getDeporte() + "\n"
+                                    + "Fecha de Inscripcion: " + matriculaEncontrada.getFechaInscripcion());
                         }
                     }
 
@@ -248,4 +271,12 @@ public class TGSTaller {
 
     }
 
+    public static boolean validarUsuario(String username, String password, List<Usuario> listaUsuarios) {
+        for (Usuario usuario : listaUsuarios) {
+            if (usuario.getUsername().equals(username) && usuario.getPassword().equals(password)) {
+                return true; // Usuario válido
+            }
+        }
+        return false; // Usuario no encontrado
+    }
 }
