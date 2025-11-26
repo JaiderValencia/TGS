@@ -86,87 +86,139 @@ public class TGSTaller {
                         do {
                             opt = GeneralES.leaEntero("\nDeportes disponibles:\n"
                                     + "Escoja el deporte al que quiere unirse\n"
-                                    + "1.Ajedrez\n");
+                                    + "1.Ajedrez (Cupos disponibles: " + cuposAjedrez + ")\n");
                             if (opt == 1) {
-                                matriculaEncontrada.setDeporte("Ajedrez");
-
+                                if (cuposAjedrez > 0) {
+                                    matriculaEncontrada.setDeporte("Ajedrez");
+                                    cuposAjedrez--;
+                                } else {
+                                    GeneralES.imp("Lo sentimos, no hay cupos disponibles para Ajedrez\n");
+                                    break;
+                                }
                             } else {
                                 GeneralES.imp("Opcion no valida, por favor intente de nuevo\n");
                             }
                         } while (opt != 1);
 
-                        GeneralES.imp("Inscripcion completada\n"
-                                + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
-                                + "Genero: " + matriculaEncontrada.getGenero() + "\n"
-                                + "Discapacidad: " + matriculaEncontrada.isMfr() + "\n"
-                                + "Deporte: " + matriculaEncontrada.getDeporte());
+                        if (cuposAjedrez >= 0 && opt == 1) {
+                            GeneralES.imp("Inscripcion completada\n"
+                                    + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
+                                    + "Genero: " + matriculaEncontrada.getGenero() + "\n"
+                                    + "Discapacidad: " + matriculaEncontrada.isMfr() + "\n"
+                                    + "Deporte: " + matriculaEncontrada.getDeporte());
+                        }
                         break;
                     } else if (matriculaEncontrada.getGenero() == "Femenino") {
                         do {
                             opt = GeneralES.leaEntero("Deportes disponibles:\n"
                                     + "Escoja el deporte al que quiere unirse\n"
-                                    + "1.Baloncesto\n"
-                                    + "2.Natacion\n"
-                                    + "3.Voleibol\n"
-                                    + "4.Atletismo\n");
+                                    + "1.Baloncesto (Cupos disponibles: " + cuposBaloncesto + ")\n"
+                                    + "2.Natacion (Cupos disponibles: " + cuposNatacion + ")\n"
+                                    + "3.Voleibol (Cupos disponibles: " + cuposVoleibol + ")\n"
+                                    + "4.Atletismo (Cupos disponibles: " + cuposAtletismo + ")\n");
 
                             if (opt < 1 || opt > 4) {
                                 GeneralES.imp("Opcion no valida, por favor intente de nuevo\n");
                             }
                         } while (opt < 1 || opt > 4);
 
-                        GeneralES.imp("Inscripcion completada\n"
-                                + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
-                                + "Genero: " + matriculaEncontrada.getGenero() + "\n"
-                                + "Discapacidad: " + matriculaEncontrada.isMfr());
+                        boolean inscripcionExitosa = false;
                         switch (opt) {
                             case 1:
-                                GeneralES.imp("Deporte: Baloncesto");
-                                matriculaEncontrada.setDeporte("Baloncesto");
+                                if (cuposBaloncesto > 0) {
+                                    matriculaEncontrada.setDeporte("Baloncesto");
+                                    cuposBaloncesto--;
+                                    inscripcionExitosa = true;
+                                } else {
+                                    GeneralES.imp("Lo sentimos, no hay cupos disponibles para Baloncesto\n");
+                                }
                                 break;
                             case 2:
-                                GeneralES.imp("Deporte: Natación");
-                                matriculaEncontrada.setDeporte("Natacion");
+                                if (cuposNatacion > 0) {
+                                    matriculaEncontrada.setDeporte("Natacion");
+                                    cuposNatacion--;
+                                    inscripcionExitosa = true;
+                                } else {
+                                    GeneralES.imp("Lo sentimos, no hay cupos disponibles para Natación\n");
+                                }
                                 break;
                             case 3:
-                                GeneralES.imp("Deporte: Voleibol");
-                                matriculaEncontrada.setDeporte("Voleibol");
+                                if (cuposVoleibol > 0) {
+                                    matriculaEncontrada.setDeporte("Voleibol");
+                                    cuposVoleibol--;
+                                    inscripcionExitosa = true;
+                                } else {
+                                    GeneralES.imp("Lo sentimos, no hay cupos disponibles para Voleibol\n");
+                                }
                                 break;
                             case 4:
-                                GeneralES.imp("Deporte: Atletismo");
-                                matriculaEncontrada.setDeporte("Atletismo");
+                                if (cuposAtletismo > 0) {
+                                    matriculaEncontrada.setDeporte("Atletismo");
+                                    cuposAtletismo--;
+                                    inscripcionExitosa = true;
+                                } else {
+                                    GeneralES.imp("Lo sentimos, no hay cupos disponibles para Atletismo\n");
+                                }
                                 break;
+                        }
+
+                        if (inscripcionExitosa) {
+                            GeneralES.imp("Inscripcion completada\n"
+                                    + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
+                                    + "Genero: " + matriculaEncontrada.getGenero() + "\n"
+                                    + "Discapacidad: " + matriculaEncontrada.isMfr() + "\n"
+                                    + "Deporte: " + matriculaEncontrada.getDeporte());
                         }
                     } else {
                         do {
                             opt = GeneralES.leaEntero("Deportes disponibles:\n"
                                     + "Escoja el deporte al que quiere unirse\n"
-                                    + "1.Natacion\n"
-                                    + "2.Voleibol\n"
-                                    + "3.Atletismo\n");
+                                    + "1.Natacion (Cupos disponibles: " + cuposNatacion + ")\n"
+                                    + "2.Voleibol (Cupos disponibles: " + cuposVoleibol + ")\n"
+                                    + "3.Atletismo (Cupos disponibles: " + cuposAtletismo + ")\n");
 
                             if (opt < 1 || opt > 3) {
                                 GeneralES.imp("Opcion no valida, por favor intente de nuevo\n");
                             }
                         } while (opt < 1 || opt > 3);
 
-                        GeneralES.imp("Inscripcion completada\n"
-                                + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
-                                + "Genero: " + matriculaEncontrada.getGenero() + "\n"
-                                + "Discapacidad: " + matriculaEncontrada.isMfr());
+                        boolean inscripcionExitosa = false;
                         switch (opt) {
                             case 1:
-                                GeneralES.imp("Deporte: Natación");
-                                matriculaEncontrada.setDeporte("Natacion");
+                                if (cuposNatacion > 0) {
+                                    matriculaEncontrada.setDeporte("Natacion");
+                                    cuposNatacion--;
+                                    inscripcionExitosa = true;
+                                } else {
+                                    GeneralES.imp("Lo sentimos, no hay cupos disponibles para Natación\n");
+                                }
                                 break;
                             case 2:
-                                GeneralES.imp("Deporte: Voleibol");
-                                matriculaEncontrada.setDeporte("Voleibol");
+                                if (cuposVoleibol > 0) {
+                                    matriculaEncontrada.setDeporte("Voleibol");
+                                    cuposVoleibol--;
+                                    inscripcionExitosa = true;
+                                } else {
+                                    GeneralES.imp("Lo sentimos, no hay cupos disponibles para Voleibol\n");
+                                }
                                 break;
                             case 3:
-                                GeneralES.imp("Deporte: Atletismo");
-                                matriculaEncontrada.setDeporte("Atletismo");
+                                if (cuposAtletismo > 0) {
+                                    matriculaEncontrada.setDeporte("Atletismo");
+                                    cuposAtletismo--;
+                                    inscripcionExitosa = true;
+                                } else {
+                                    GeneralES.imp("Lo sentimos, no hay cupos disponibles para Atletismo\n");
+                                }
                                 break;                            
+                        }
+
+                        if (inscripcionExitosa) {
+                            GeneralES.imp("Inscripcion completada\n"
+                                    + "Nombre: " + matriculaEncontrada.getNombre() + "\n"
+                                    + "Genero: " + matriculaEncontrada.getGenero() + "\n"
+                                    + "Discapacidad: " + matriculaEncontrada.isMfr() + "\n"
+                                    + "Deporte: " + matriculaEncontrada.getDeporte());
                         }
                     }
 
